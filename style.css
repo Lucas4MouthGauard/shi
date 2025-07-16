@@ -225,6 +225,110 @@ body {
     100% { transform: rotateY(360deg); }
 }
 
+/* CA展示区域 */
+.ca-section {
+    margin-bottom: 50px;
+}
+
+.ca-container {
+    background: rgba(0, 0, 0, 0.3);
+    border: 4px solid #ffd700;
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.ca-container h2 {
+    text-align: center;
+    color: #ffd700;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 1.5rem;
+}
+
+.ca-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ca-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#ca-address {
+    flex: 1;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#ca-address:focus {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 20px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.copy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+.copy-icon {
+    font-size: 1rem;
+}
+
+.copy-text {
+    font-size: 0.6rem;
+}
+
+.ca-info {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.ca-info p {
+    font-size: 0.8rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.network, .standard {
+    color: #ffd700;
+    font-weight: bold;
+}
+
 /* 内容区域 */
 .content-section {
     background: rgba(0, 0, 0, 0.3);
@@ -386,6 +490,79 @@ blockquote {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
+/* Buy弹窗内容 */
+.buy-content {
+    text-align: center;
+}
+
+.coming-soon {
+    margin-bottom: 30px;
+}
+
+.coming-soon-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 20px;
+    animation: construction 2s ease-in-out infinite;
+}
+
+@keyframes construction {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+.coming-soon h3 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.coming-soon p {
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.buy-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.buy-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ffd700;
+    border-radius: 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.buy-link:hover:not(.disabled) {
+    transform: scale(1.05);
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.buy-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.buy-icon {
+    font-size: 1.5rem;
+}
+
+/* 社区弹窗内容 */
 .community-links {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -470,7 +647,20 @@ blockquote {
         font-size: 0.6rem;
     }
     
+    .ca-input-group {
+        flex-direction: column;
+    }
+    
+    .ca-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
     .community-links {
+        grid-template-columns: 1fr;
+    }
+    
+    .buy-links {
         grid-template-columns: 1fr;
     }
     

@@ -139,6 +139,103 @@ function createParticleEffect() {
     }
 }
 
+// CA复制功能
+function copyCA() {
+    const caInput = document.getElementById('ca-address');
+    const copyBtn = document.querySelector('.copy-btn');
+    const originalText = copyBtn.innerHTML;
+    
+    // 复制到剪贴板
+    caInput.select();
+    caInput.setSelectionRange(0, 99999); // 移动端支持
+    
+    try {
+        document.execCommand('copy');
+        
+        // 显示成功反馈
+        copyBtn.innerHTML = '<span class="copy-icon">✅</span><span class="copy-text">已复制</span>';
+        copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+        
+        // 播放复制成功音效
+        playCopySound();
+        
+        // 3秒后恢复原状
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+        }, 3000);
+        
+    } catch (err) {
+        // 如果execCommand失败，尝试现代API
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(caInput.value).then(() => {
+                copyBtn.innerHTML = '<span class="copy-icon">✅</span><span class="copy-text">已复制</span>';
+                copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+                playCopySound();
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+                }, 3000);
+            });
+        } else {
+            // 降级方案：显示地址让用户手动复制
+            alert('请手动复制合约地址：' + caInput.value);
+        }
+    }
+}
+
+// 播放复制成功音效
+function playCopySound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
+}
+
+// Buy弹窗功能
+function showBuyModal() {
+    const modal = document.getElementById('buy-modal');
+    modal.style.display = 'block';
+    
+    // 添加弹窗显示动画
+    modal.style.animation = 'fadeIn 0.3s ease-out';
+    
+    // 点击弹窗外部关闭
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeBuyModal();
+        }
+    });
+    
+    // ESC键关闭弹窗
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeBuyModal();
+        }
+    });
+}
+
+function closeBuyModal() {
+    const modal = document.getElementById('buy-modal');
+    modal.style.animation = 'fadeOut 0.3s ease-out';
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
 // 社区弹窗功能
 function showCommunity() {
     const modal = document.getElementById('community-modal');

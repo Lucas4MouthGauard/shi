@@ -16,6 +16,10 @@
                     <span class="logo-text">$屎</span>
                 </div>
                 <div class="nav-links">
+                    <a href="#" class="nav-link" onclick="showBuyModal()">
+                        <span class="nav-icon">💰</span>
+                        <span class="nav-text">Buy</span>
+                    </a>
                     <a href="https://x.com" target="_blank" class="nav-link">
                         <span class="nav-icon">𝕏</span>
                         <span class="nav-text">X</span>
@@ -64,6 +68,26 @@
                 </div>
             </section>
 
+            <!-- CA展示区域 -->
+            <section class="ca-section">
+                <div class="ca-container">
+                    <h2>💩 合约地址 💩</h2>
+                    <div class="ca-display">
+                        <div class="ca-input-group">
+                            <input type="text" id="ca-address" value="0x1234567890abcdef1234567890abcdef12345678" readonly>
+                            <button class="copy-btn" onclick="copyCA()">
+                                <span class="copy-icon">📋</span>
+                                <span class="copy-text">复制</span>
+                            </button>
+                        </div>
+                        <div class="ca-info">
+                            <p>网络: <span class="network">Ethereum</span></p>
+                            <p>代币标准: <span class="standard">ERC-20</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- 文案区域 -->
             <section class="content-section">
                 <div class="meme-text">
@@ -98,6 +122,36 @@
         <footer class="footer">
             <p>💩 $屎 - 连接全人类的共同语言 💩</p>
         </footer>
+    </div>
+
+    <!-- Buy弹窗 -->
+    <div id="buy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBuyModal()">&times;</span>
+            <h2>💩 购买屎币 💩</h2>
+            <div class="buy-content">
+                <div class="coming-soon">
+                    <span class="coming-soon-icon">🚧</span>
+                    <h3>即将上线</h3>
+                    <p>屎币交易功能正在开发中...</p>
+                    <p>敬请期待！</p>
+                </div>
+                <div class="buy-links">
+                    <a href="#" class="buy-link disabled">
+                        <span class="buy-icon">🦄</span>
+                        <span>Uniswap</span>
+                    </a>
+                    <a href="#" class="buy-link disabled">
+                        <span class="buy-icon">🥞</span>
+                        <span>PancakeSwap</span>
+                    </a>
+                    <a href="#" class="buy-link disabled">
+                        <span class="buy-icon">🔗</span>
+                        <span>DEX</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- 社区弹窗 -->
