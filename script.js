@@ -139,6 +139,38 @@ function createParticleEffect() {
     }
 }
 
+// 社区弹窗功能
+function showCommunity() {
+    const modal = document.getElementById('community-modal');
+    modal.style.display = 'block';
+    
+    // 添加弹窗显示动画
+    modal.style.animation = 'fadeIn 0.3s ease-out';
+    
+    // 点击弹窗外部关闭
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeCommunity();
+        }
+    });
+    
+    // ESC键关闭弹窗
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCommunity();
+        }
+    });
+}
+
+function closeCommunity() {
+    const modal = document.getElementById('community-modal');
+    modal.style.animation = 'fadeOut 0.3s ease-out';
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
 // 添加CSS动画
 const style = document.createElement('style');
 style.textContent = `
@@ -159,6 +191,24 @@ style.textContent = `
     
     .floating-coin {
         transition: transform 0.1s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
     }
 `;
 document.head.appendChild(style);
